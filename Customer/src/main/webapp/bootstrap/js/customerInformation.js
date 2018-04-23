@@ -3,11 +3,11 @@ function login(){
 	var password = document.getElementById("password").value;
 
 	if (!userName && !password) {
-		console.log("Please enter the data in the fields");
+		alert("Please enter the login credentials in the fields");
 	} else {
 		for (var i = 0; i < localStorage.length; i++) {
 			var _getUserDetails = JSON.parse(localStorage.getItem(localStorage.key(i)));
-			if (userName == _getUserDetails.getItem("emailAddress") && password == _getUserDetails.getItem("password")) {
+			if (userName == _getUserDetails.emailAddress && password == _getUserDetails.password) {
 				alert("Correct Username " + userName + " password : " + password);
 				window.location = "home.html";
 			}
@@ -22,7 +22,9 @@ function registerForm(){
 	let repassword = document.getElementById("repassword").value;
 	let dateOfBirth = document.getElementById("dateOfBirth").value;
 	
-	if(!userName && !emailAddres && !password && !repassword && !dateOfBirth){
+	if(!userName && !emailAddress && !password && !repassword && !dateOfBirth){
+		alert("Please enter all the information in the input fields");
+	} else {
 		var userRegister = {
 				userName: userName,
 				emailAddress: emailAddress,
@@ -38,7 +40,5 @@ function registerForm(){
 		} else {
 			console.log("The password are not same");
 		}
-	} else {
-		alert("Please enter all the information in the input fields");
 	}
 }
