@@ -6,29 +6,39 @@ function login(){
 		console.log("Please enter the data in the fields");
 	} else {
 		for (var i = 0; i < localStorage.length; i++) {
-		var _getUserDetails = JSON.parse(localStorage.getItem(localStorage.key(i)));
-		if (userName == localStorage.getItem("emailAddress") && password == localStorage.getItem("password")) {
-			alert("Correct Username " + userName + " password : " + password);
-			window.location = "home.html"
+			var _getUserDetails = JSON.parse(localStorage.getItem(localStorage.key(i)));
+			if (userName == _getUserDetails.getItem("emailAddress") && password == _getUserDetails.getItem("password")) {
+				alert("Correct Username " + userName + " password : " + password);
+				window.location = "home.html";
+			}
 		}
-	}
 	}
 }
 
 function registerForm(){
-	var userRegister = {
-		userName: document.getElementById("userName").value,
-		emailAddress: document.getElementById("emailAddress").value,
-		password: document.getElementById("password").value,
-		repassword: document.getElementById("repassword").value,
-		dateOfBirth: document.getElementById("dateOfBirth").value
-	};
+	let userName = document.getElementById("userName").value;
+	let emailAddress = document.getElementById("emailAddress").value;
+	let password = document.getElementById("password").value;
+	let repassword = document.getElementById("repassword").value;
+	let dateOfBirth = document.getElementById("dateOfBirth").value;
+	
+	if(!userName && !emailAddres && !password && !repassword && !dateOfBirth){
+		var userRegister = {
+				userName: userName,
+				emailAddress: emailAddress,
+				password: password,
+				repassword: repassword,
+				dateOfBirth: dateOfBirth
+		};
 
-	if (userRegister.password == userRegister.repassword) {
-		localStorage.setItem(userRegister.emailAddress, JSON.stringify(userRegister));
-		console.log(userRegister.userName + " " + userRegister.emailAddress + " " + userRegister.password + " " + userRegister.dateOfBirth);
-		window.location = "index.html"
+		if (password == repassword) {
+			localStorage.setItem(userRegister.emailAddress, JSON.stringify(userRegister));
+			console.log(userRegister.userName + " " + userRegister.emailAddress + " " + userRegister.password + " " + userRegister.dateOfBirth);
+			window.location = "index.html";
+		} else {
+			console.log("The password are not same");
+		}
 	} else {
-		console.log("The password are not same");
+		alert("Please enter all the information in the input fields");
 	}
 }
